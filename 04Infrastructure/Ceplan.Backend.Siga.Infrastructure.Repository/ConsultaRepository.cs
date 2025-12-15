@@ -21,7 +21,6 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
             using (var connection = this._connectionFactorySqlServer.GetConnectionSiga()) //conexion a la bbdd
             {
 
-                /* para ejecutar el sp
                 //parametros
                 var parameters = new DynamicParameters();
                 parameters.Add("@OP", input.op);
@@ -29,26 +28,12 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                 parameters.Add("@DNI_EMPLE", input.dni_emple);
 
                 // queryasync devuelve IEnumerable<T>
-                var result = await connection.QueryAsync<ConsultaTempEntity>("[sp_siga_consultas]", param: parameters, commandType: System.Data.CommandType.StoredProcedure);
+                var result = await connection.QueryAsync<ConsultaTempEntity>("[SP_SIGA_CONSULTAS]", param: parameters, commandType: System.Data.CommandType.StoredProcedure);
 
                 return result.AsList(); //lo convierte a List<T> 
-                */
 
-                //para ejecutar consulta
 
-                var sql = @" 
-                            SELECT *
-                            FROM SIG_ACTIVOS
-                            WHERE CODIGO_ACTIVO = @COD_ACTIVO
-                            
-                        ";
 
-                var parameters = new DynamicParameters();
-                parameters.Add("@OP", input.op);
-                parameters.Add("@COD_ACTIVO", input.cod_activo);
-
-                var result = await connection.QueryAsync<ConsultaTempEntity>(sql, parameters);
-                return result.AsList();
             }
         }
 
