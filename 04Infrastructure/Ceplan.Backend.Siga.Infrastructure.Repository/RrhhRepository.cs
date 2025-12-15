@@ -21,19 +21,19 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
             using (var connection = this._connectionFactorySqlServer.GetConnectionRRHH()) //conexion a la bbdd
             {
 
-              
+
                 //parametros
                 var parameters = new DynamicParameters();
                 parameters.Add("@DNI_EMPLE", input.Dni_emple);
-               
+
 
                 // queryasync devuelve IEnumerable<T>
-                var result = await connection.QueryAsync<RrhhTempEntity>("[SP_RRHH_DATOS]", param: parameters, commandType: System.Data.CommandType.StoredProcedure);
+                var result = await connection.QueryAsync<RrhhTempEntity>("[usp_empleados_lista]", param: parameters, commandType: System.Data.CommandType.StoredProcedure);
 
                 return result.AsList(); //lo convierte a List<T> 
-                
 
-              
+
+
             }
         }
 

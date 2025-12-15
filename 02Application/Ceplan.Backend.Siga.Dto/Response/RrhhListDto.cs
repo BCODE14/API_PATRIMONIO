@@ -9,6 +9,7 @@ namespace Ceplan.Backend.Siga.Application.Dto.Response
     public class RrhhListDto
     {
         //datos que entrega
+        public string? A_ID { get; set; }
         public string? A_DNI { get; set; }
         public string? A_NOM { get; set; }
 

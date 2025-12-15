@@ -7,7 +7,7 @@ namespace Ceplan.Backend.Siga.Application.Query
     public class RrhhListQuery : IRequest<ResponseModelDto<List<RrhhListDto>>> //implementa un contrato de la interfaz donde dice lo que va a devolver 
     {
         //datos de entrada
-        public string Dni_emple { get; set; }
+        public string? Dni_emple { get; set; }
 
 
 

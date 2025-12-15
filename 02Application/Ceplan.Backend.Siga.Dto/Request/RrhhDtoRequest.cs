@@ -11,6 +11,6 @@ namespace Ceplan.Backend.Siga.Dto.Request
         //datos de entrada
 
 
-        public string Dni_emple { get; set; }
+        public string? Dni_emple { get; set; }
     }
 }

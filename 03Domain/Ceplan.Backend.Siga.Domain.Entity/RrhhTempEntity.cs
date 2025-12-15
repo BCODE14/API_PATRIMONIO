@@ -11,11 +11,13 @@ namespace Ceplan.Backend.Siga.Domain.Entity
     {
         //entrada
 
-        public string Dni_emple { get; set; }
+        public string? Dni_emple { get; set; }
 
         //respuesta
 
         //datos que entrega
+
+        public string? A_ID { get; set; }
         public string? A_DNI { get; set; }
         public string? A_NOM { get; set; }
 
