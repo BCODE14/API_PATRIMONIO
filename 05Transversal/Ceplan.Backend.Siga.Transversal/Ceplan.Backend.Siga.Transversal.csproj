@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="AgenteAutomatizado\**" />
+    <Compile Remove="FirmaPeru\**" />
+    <EmbeddedResource Remove="AgenteAutomatizado\**" />
+    <EmbeddedResource Remove="FirmaPeru\**" />
+    <None Remove="AgenteAutomatizado\**" />
+    <None Remove="FirmaPeru\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+    <PackageReference Include="RefirmaClientForNet" Version="1.0.1" />
+    <PackageReference Include="SevenZip" Version="19.0.0" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.5" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\02Application\Ceplan.Backend.Siga.Dto\Ceplan.Backend.Siga.Dto.csproj" />
+    <ProjectReference Include="..\..\03Domain\Ceplan.Backend.Siga.Domain.Entity\Ceplan.Backend.Siga.Domain.Entity.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,4 @@
+@Library('gmLibs') _
+iisCeplanNetPipeline(
+    IdApp: 'APP-0075'
+    ) 

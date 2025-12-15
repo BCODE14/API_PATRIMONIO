@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ceplan.Backend.Siga.Domain.Entity\Ceplan.Backend.Siga.Domain.Entity.csproj" />
+    <ProjectReference Include="..\..\04Infrastructure\Ceplan.Backend.Siga.Infrastructure.Interface\Ceplan.Backend.Siga.Infrastructure.Interface.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.19" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\02Application\Ceplan.Backend.Siga.Mapper\Ceplan.Backend.Siga.Mapper.csproj" />
+    <ProjectReference Include="..\..\03Domain\Ceplan.Backend.Siga.Domain.Core\Ceplan.Backend.Siga.Domain.Core.csproj" />
+    <ProjectReference Include="..\..\04Infrastructure\Ceplan.Backend.Siga.Infrastructure.Data\Ceplan.Backend.Siga.Infrastructure.Data.csproj" />
+    <ProjectReference Include="..\..\04Infrastructure\Ceplan.Backend.Siga.Infrastructure.Repository\Ceplan.Backend.Siga.Infrastructure.Repository.csproj" />
+  </ItemGroup>
+
+
+
+</Project>
