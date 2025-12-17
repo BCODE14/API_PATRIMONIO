@@ -32,6 +32,8 @@ namespace Ceplan.Backend.Siga.Domain.Entity
         public string? A_CELU { get; set; }
         public string? A_UO { get; set; }
 
+        public string? UNIFISICA { get; set; }
+
 
 
 

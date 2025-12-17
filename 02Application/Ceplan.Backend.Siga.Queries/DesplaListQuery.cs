@@ -20,5 +20,8 @@ namespace Ceplan.Backend.Siga.Application.Query
         public string? motivosalida { get; set; }
         public string? tipodespla { get; set; }
         public string? trabajador { get; set; }
+
+
+
     }
 }

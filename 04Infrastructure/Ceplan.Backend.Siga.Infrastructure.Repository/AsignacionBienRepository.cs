@@ -66,8 +66,8 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
 
                         page.Content().Column(col =>
                         {
-                            col.Item().AlignCenter().Text("ANEXO N.° 1").Bold();
-                            col.Item().AlignCenter().Text($"ASIGNACIÓN EN USO DE BIENES MUEBLES PATRIMONIALESN.º {nrodocu}")
+                            col.Item().AlignCenter().Text("ANEXO N.1").Bold();
+                        col.Item().AlignCenter().Text($"ASIGNACIoN EN USO DE BIENES MUEBLES PATRIMONIALESN N°{nrodocu}-\n{DateTime.Now.Year}")
                                 .Bold().FontSize(11);
 
                             col.Item().Height(10);
@@ -77,7 +77,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                 row.RelativeItem(3)
                                     .Border(1)
                                     .Padding(5)
-                                    .Text("ENTIDAD U ORGANIZACIÓN DE LA ENTIDAD:\nCENTRO NACIONAL DE PLANEAMIENTO ESTRATÉGICO - CEPLAN")
+                                    .Text("ENTIDAD U ORGANIZACIoN DE LA ENTIDAD:\nCENTRO NACIONAL DE PLANEAMIENTO ESTRATeGICO - CEPLAN")
                                     .Bold();
 
                                 row.RelativeItem()
@@ -116,7 +116,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
 
                                 Cell("Correo electronico", true);
                                 Cell(input.R_CORREO);
-                                Cell("Condición contractual", true);
+                                Cell("Condicion contractual", true);
                                 Cell(input.R_CONTR);
 
                                 Cell("Organo o Unidad Organica", true);
@@ -138,9 +138,9 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                             {
                                 t.ColumnsDefinition(cd =>
                                 {
-                                    cd.ConstantColumn(30);   // Nº
-                                    cd.ConstantColumn(70);   // Código
-                                    cd.RelativeColumn(3);    // Denominación
+                                    cd.ConstantColumn(30);   // N
+                                    cd.ConstantColumn(70);   // Codigo
+                                    cd.RelativeColumn(3);    // Denominacion
                                     cd.RelativeColumn();     // Marca
                                     cd.RelativeColumn();     // Modelo
                                     cd.RelativeColumn();     // Serie
@@ -185,10 +185,10 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                             col.Item().Text("CONSIDERACIONES:").Bold();
 
                             col.Item().Border(1).Padding(6).Text(
-                                "El usuario es responsable de la permanencia y conservación de cada uno de los bienes descritos, " +
+                                "El usuario es responsable de la permanencia y conservacion de cada uno de los bienes descritos, " +
                                 "debiendo tomar las precauciones del caso para evitar sustracciones, deterioros, etc.\n\n" +
                                 "Cualquier necesidad de traslado del bien mueble patrimonial dentro o fuera del local de la Entidad, " +
-                                "es previamente comunicado al Especialista en Gestión Patrimonial y Almacén."
+                                "es previamente comunicado al Especialista en Gestion Patrimonial y Almacen."
                             );
 
                             col.Item().Height(20);
@@ -338,7 +338,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                         page.Content().Column(col =>
                         {
                             col.Item().AlignCenter().Text("ANEXO N.° 1").Bold();
-                            col.Item().AlignCenter().Text($"ASIGNACION EN USO DE BIENES MUEBLES PATRIMONIALESN-TELETRABAJO.º {nrodocu}")
+                            col.Item().AlignCenter().Text($"ASIGNACION EN USO DE BIENES MUEBLES PATRIMONIALESN-TELETRABAJO N° {nrodocu}-\n{DateTime.Now.Year}")
                                 .Bold().FontSize(11);
 
                             col.Item().Height(10);
@@ -348,7 +348,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                 row.RelativeItem(3)
                                     .Border(1)
                                     .Padding(5)
-                                    .Text("ENTIDAD U ORGANIZACIÓN DE LA ENTIDAD:\nCENTRO NACIONAL DE PLANEAMIENTO ESTRATÉGICO - CEPLAN")
+                                    .Text("ENTIDAD U ORGANIZACIoN DE LA ENTIDAD:\nCENTRO NACIONAL DE PLANEAMIENTO ESTRATeGICO - CEPLAN")
                                     .Bold();
 
                                 row.RelativeItem()
@@ -387,7 +387,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
 
                                 Cell("Correo electronico", true);
                                 Cell(input.R_CORREO);
-                                Cell("Condición contractual", true);
+                                Cell("Condicion contractual", true);
                                 Cell(input.R_CONTR);
 
                                 Cell("Organo o Unidad Organica", true);
@@ -409,9 +409,9 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                             {
                                 t.ColumnsDefinition(cd =>
                                 {
-                                    cd.ConstantColumn(30);   // Nº
-                                    cd.ConstantColumn(70);   // Código
-                                    cd.RelativeColumn(3);    // Denominación
+                                    cd.ConstantColumn(30);   // N
+                                    cd.ConstantColumn(70);   // Codigo
+                                    cd.RelativeColumn(3);    // Denominacion
                                     cd.RelativeColumn();     // Marca
                                     cd.RelativeColumn();     // Modelo
                                     cd.RelativeColumn();     // Serie
@@ -456,10 +456,10 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                             col.Item().Text("CONSIDERACIONES:").Bold();
 
                             col.Item().Border(1).Padding(6).Text(
-                                "El usuario es responsable de la permanencia y conservación de cada uno de los bienes descritos, " +
+                                "El usuario es responsable de la permanencia y conservacion de cada uno de los bienes descritos, " +
                                 "debiendo tomar las precauciones del caso para evitar sustracciones, deterioros, etc.\n\n" +
                                 "Cualquier necesidad de traslado del bien mueble patrimonial dentro o fuera del local de la Entidad, " +
-                                "es previamente comunicado al Especialista en Gestión Patrimonial y Almacén."
+                                "es previamente comunicado al Especialista en Gestion Patrimonial y Almacen."
                             );
 
                             col.Item().Height(20);
@@ -601,7 +601,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                         page.Content().Column(col =>
                                         {
                                             col.Item().AlignCenter().Text("ANEXO N.° 1").Bold();
-                                            col.Item().AlignCenter().Text($"DEVOLUCION DE BIENES INMUEBLES PATRIMONIALESN.º {nrodocu}")
+                                            col.Item().AlignCenter().Text($"DEVOLUCION DE BIENES INMUEBLES PATRIMONIALESN N°{nrodocu}-\n{DateTime.Now.Year}")
                                                 .Bold().FontSize(11);
 
                                             col.Item().Height(10);
@@ -611,7 +611,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                                 row.RelativeItem(3)
                                                     .Border(1)
                                                     .Padding(5)
-                                                    .Text("ENTIDAD U ORGANIZACIÓN DE LA ENTIDAD:\nCENTRO NACIONAL DE PLANEAMIENTO ESTRATÉGICO - CEPLAN")
+                                                    .Text("ENTIDAD U ORGANIZACION DE LA ENTIDAD:\nCENTRO NACIONAL DE PLANEAMIENTO ESTRATeGICO - CEPLAN")
                                                     .Bold();
 
                                                 row.RelativeItem()
@@ -650,7 +650,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
 
                                                 Cell("Correo electronico", true);
                                                 Cell(input.R_CORREO);
-                                                Cell("Condición contractual", true);
+                                                Cell("Condicion contractual", true);
                                                 Cell(input.R_CONTR);
 
                                                 Cell("Organo o Unidad Organica", true);
@@ -672,9 +672,9 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                             {
                                                 t.ColumnsDefinition(cd =>
                                                 {
-                                                    cd.ConstantColumn(30);   // Nº
-                                                    cd.ConstantColumn(70);   // Código
-                                                    cd.RelativeColumn(3);    // Denominación
+                                                    cd.ConstantColumn(30);   // N
+                                                    cd.ConstantColumn(70);   // Codigo
+                                                    cd.RelativeColumn(3);    // Denominacion
                                                     cd.RelativeColumn();     // Marca
                                                     cd.RelativeColumn();     // Modelo
                                                     cd.RelativeColumn();     // Serie
@@ -719,10 +719,10 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                             col.Item().Text("CONSIDERACIONES:").Bold();
 
                                             col.Item().Border(1).Padding(6).Text(
-                                                "El usuario es responsable de la permanencia y conservación de cada uno de los bienes descritos, " +
+                                                "El usuario es responsable de la permanencia y conservacion de cada uno de los bienes descritos, " +
                                                 "debiendo tomar las precauciones del caso para evitar sustracciones, deterioros, etc.\n\n" +
                                                 "Cualquier necesidad de traslado del bien mueble patrimonial dentro o fuera del local de la Entidad, " +
-                                                "es previamente comunicado al Especialista en Gestión Patrimonial y Almacén."
+                                                "es previamente comunicado al Especialista en Gestion Patrimonial y Almacen."
                                             );
 
                                             col.Item().Height(20);
@@ -859,9 +859,9 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
 
                         p.Content().Column(c =>
                         {
-                            c.Item().AlignCenter().Text("ANEXO N.º 3").Bold();
+                            c.Item().AlignCenter().Text("ANEXO N. 3").Bold();
                             c.Item().AlignCenter()
-                                .Text($"DESPLAZAMIENTO INTERNO DE BIENES MUEBLES PATRIMONIALES N.º {nrodocu}")
+                                .Text($"DESPLAZAMIENTO INTERNO DE BIENES MUEBLES PATRIMONIALES N° {nrodocu} -\n{DateTime.Now.Year}")
                                 .Bold()
                                 .FontSize(11);
 
@@ -875,10 +875,10 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                     cd.RelativeColumn(1);
                                 });
 
-                                t.Cell().Text("ENTIDAD U ORGANIZACIÓN").Bold();
+                                t.Cell().Text("ENTIDAD U ORGANIZACION").Bold();
                                 t.Cell().Text("FECHA").Bold();
 
-                                t.Cell().Text("CENTRO NACIONAL DE PLANEAMIENTO ESTRATÉGICO - CEPLAN");
+                                t.Cell().Text("CENTRO NACIONAL DE PLANEAMIENTO ESTRATEGICO - CEPLAN");
                                 t.Cell().Text(DateTime.Now.ToString("dd/MM/yyyy"));
                             });
 
@@ -1120,9 +1120,9 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
 
                         p.Content().Column(c =>
                         {
-                            c.Item().AlignCenter().Text("ANEXO N.º 4").Bold();
+                            c.Item().AlignCenter().Text("ANEXO N 4").Bold();
                             c.Item().AlignCenter()
-                                .Text($"ORDEN DE SALIDA Y REINGRESO DE BIENES MUEBLES PATRIMONIALES N.º {nrodocu}")
+                                .Text($"ORDEN DE SALIDA Y REINGRESO DE BIENES MUEBLES PATRIMONIALES N° {nrodocu}-\n{DateTime.Now.Year}")
                                 .Bold();
 
                             c.Item().Height(10);
@@ -1134,10 +1134,10 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                     cd.RelativeColumn(1);
                                 });
 
-                                t.Cell().Text("ENTIDAD U ORGANIZACIÓN DE LA ENTIDAD").Bold();
+                                t.Cell().Text("ENTIDAD U ORGANIZACION DE LA ENTIDAD").Bold();
                                 t.Cell().Text("FECHA").Bold();
 
-                                t.Cell().Text("CENTRO NACIONAL DE PLANEAMIENTO ESTRATÉGICO - CEPLAN");
+                                t.Cell().Text("CENTRO NACIONAL DE PLANEAMIENTO ESTRATEGICO - CEPLAN");
                                 t.Cell().Text($"{DateTime.Now:dd/MM/yyyy}");
                             });
 
@@ -1174,8 +1174,8 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                 t.Cell().Text("MOTIVO").Bold();
                                 string motivo = input.S_MTV_SALIDA;
                                 t.Cell().Text(motivo == "1" ? "✔ MANTENIMIENTO" : "MANTENIMIENTO");
-                                t.Cell().Text(motivo == "2" ? "✔ COMISIÓN DE SERVICIOS" : "COMISIÓN DE SERVICIOS");
-                                t.Cell().Text(motivo == "3" ? "✔ CAPACITACIÓN Y/O EVENTO" : "CAPACITACIÓN Y/O EVENTO");
+                                t.Cell().Text(motivo == "2" ? "✔ COMISIoN DE SERVICIOS" : "COMISIoN DE SERVICIOS");
+                                t.Cell().Text(motivo == "3" ? "✔ CAPACITACIoN Y/O EVENTO" : "CAPACITACIoN Y/O EVENTO");
                             
                             });
 
@@ -1199,10 +1199,10 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                 t.Cell().Padding(4).Text($"DNI / RUC: {input.R_DNI}");
 
                                 t.Cell().Padding(4).Text($"Correo: {input.A_CORREO}");
-                                t.Cell().Padding(4).Text($"Dirección: {input.R_DIREC}");
+                                t.Cell().Padding(4).Text($"Direccion: {input.R_DIREC}");
 
                                 t.Cell().Padding(4).Text($"Organo / Unidad Organica: {input.A_UO}");
-                                t.Cell().Padding(4).Text($"Proveedor / Órgano: {input.R_UO}");
+                                t.Cell().Padding(4).Text($"Proveedor / organo: {input.R_UO}");
 
                                 t.Cell().Padding(4).Text($"Local o sede: {input.A_SEDE}");
                                 t.Cell().Padding(4).Text($"Local o sede: {input.R_SEDE}");
@@ -1232,7 +1232,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
 
                                 Header("N°");
                                 Header("Codigo Patrimonial");
-                                Header("Denominación");
+                                Header("Denominacion");
                                 Header("Marca");
                                 Header("Modelo");
                                 Header("Color");
@@ -1271,7 +1271,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                     col.Item().Height(25);
                                     col.Item().BorderTop(1);
                                     col.Item().AlignCenter()
-                                        .Text("Jefe de la Dirección u Oficina que autoriza el traslado");
+                                        .Text("Jefe de la Direccion u Oficina que autoriza el traslado");
                                 });
 
                                 r.RelativeItem().AlignCenter().Column(col =>
@@ -1411,9 +1411,9 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
 
                         p.Content().Column(c =>
                         {
-                            c.Item().AlignCenter().Text("ANEXO N.º 4").Bold();
+                            c.Item().AlignCenter().Text("ANEXO N. 4").Bold();
                             c.Item().AlignCenter()
-                                .Text($"ORDEN DE SALIDA Y REINGRESO DE BIENES MUEBLES PATRIMONIALES N.º {nrodocu}")
+                                .Text($"ORDEN DE SALIDA Y REINGRESO DE BIENES MUEBLES PATRIMONIALES N. {nrodocu}-\n{DateTime.Now.Year}")
                                 .Bold();
 
                             c.Item().Height(10);
@@ -1425,10 +1425,10 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                     cd.RelativeColumn(1);
                                 });
 
-                                t.Cell().Text("ENTIDAD U ORGANIZACIÓN DE LA ENTIDAD").Bold();
+                                t.Cell().Text("ENTIDAD U ORGANIZACION DE LA ENTIDAD").Bold();
                                 t.Cell().Text("FECHA").Bold();
 
-                                t.Cell().Text("CENTRO NACIONAL DE PLANEAMIENTO ESTRATÉGICO - CEPLAN");
+                                t.Cell().Text("CENTRO NACIONAL DE PLANEAMIENTO ESTRATEGICO - CEPLAN");
                                 t.Cell().Text($"{DateTime.Now:dd/MM/yyyy}");
                             });
 
@@ -1466,8 +1466,8 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                 t.Cell().Text("MOTIVO").Bold();
                                 string motivo = input.S_MTV_SALIDA;
                                 t.Cell().Text(motivo == "1" ? "✔ MANTENIMIENTO" : "MANTENIMIENTO");
-                                t.Cell().Text(motivo == "2" ? "✔ COMISIÓN DE SERVICIOS" : "COMISIÓN DE SERVICIOS");
-                                t.Cell().Text(motivo == "3" ? "✔ CAPACITACIÓN Y/O EVENTO" : "CAPACITACIÓN Y/O EVENTO");
+                                t.Cell().Text(motivo == "2" ? "✔ COMISIoN DE SERVICIOS" : "COMISIoN DE SERVICIOS");
+                                t.Cell().Text(motivo == "3" ? "✔ CAPACITACIoN Y/O EVENTO" : "CAPACITACIoN Y/O EVENTO");
                             });
 
                             c.Item().Height(8);
@@ -1490,10 +1490,10 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                 t.Cell().Padding(4).Text($"DNI / RUC: {input.R_DNI}");
 
                                 t.Cell().Padding(4).Text($"Correo: {input.A_CORREO}");
-                                t.Cell().Padding(4).Text($"Dirección: {input.R_DIREC}");
+                                t.Cell().Padding(4).Text($"Direccion: {input.R_DIREC}");
 
                                 t.Cell().Padding(4).Text($"Organo / Unidad Organica: {input.A_UO}");
-                                t.Cell().Padding(4).Text($"Proveedor / Órgano: {input.R_UO}");
+                                t.Cell().Padding(4).Text($"Proveedor / organo: {input.R_UO}");
 
                                 t.Cell().Padding(4).Text($"Local o sede: {input.A_SEDE}");
                                 t.Cell().Padding(4).Text($"Local o sede: {input.R_SEDE}");
@@ -1523,7 +1523,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
 
                                 Header("N°");
                                 Header("Codigo Patrimonial");
-                                Header("Denominación");
+                                Header("Denominacion");
                                 Header("Marca");
                                 Header("Modelo");
                                 Header("Color");
@@ -1562,7 +1562,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                     col.Item().Height(25);
                                     col.Item().BorderTop(1);
                                     col.Item().AlignCenter()
-                                        .Text("Jefe de la Dirección u Oficina que autoriza el traslado");
+                                        .Text("Jefe de la Direccion u Oficina que autoriza el traslado");
                                 });
 
                                 r.RelativeItem().AlignCenter().Column(col =>

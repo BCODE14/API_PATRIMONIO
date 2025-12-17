@@ -24,6 +24,8 @@ namespace Ceplan.Backend.Siga.Application.Dto.Response
         public string? A_CELU { get; set; }
         public string? A_UO { get; set; }
 
+        public string? UNIFISICA { get; set; }
+
 
 
 

@@ -20,7 +20,7 @@ namespace Ceplan.Backend.Siga.Rest.Controllers
 
 
         //definicion del metodo post (disfrasado de get)
-        [HttpPost("Despla")]
+        [HttpPost("List")]
         [ProducesResponseType(typeof(ResponseModelDto<List<DesplaListQuery>>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ResponseModelDto), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> List([FromBody] DesplaListQuery oInput)

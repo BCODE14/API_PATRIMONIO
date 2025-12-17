@@ -10,6 +10,8 @@ namespace Ceplan.Backend.Siga.Application.Dto.Response
     public class DesplaListDto
     {
         //datos que entrega
+
+        public string? idsolic { get; set; }
         public string? numero_doc{ get; set; }
         public string? empleado { get; set; }
         public string? unidadorg{ get; set; }
@@ -39,6 +41,18 @@ namespace Ceplan.Backend.Siga.Application.Dto.Response
         public string? B_TIPO_SALIDA { get; set; }
         public string? B_MOTIVO_SALIDA { get; set; }
         public string? B_ESTADO_DESPL { get; set; }
+
+
+        public string? codbien { get; set; }
+        public string? nombien { get; set; }
+        public string? idsolic { get; set; }
+
+        public string? Poraprobar { get; set; }
+
+        public string? Aprobadas { get; set; }
+
+        public string? externo { get; set; }
+        public string?  interno { get; set; }
 
     }
 }

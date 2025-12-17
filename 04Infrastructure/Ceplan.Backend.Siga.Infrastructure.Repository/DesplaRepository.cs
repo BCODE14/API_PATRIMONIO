@@ -22,11 +22,11 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
             using (var connection = this._connectionFactorySqlServer.GetConnectionPatri()) //conexion a la bbdd
             {
 
-                
+
                 //parametros
                 var parameters = new DynamicParameters();
 
-                parameters.Add("@OP",input.op);
+                parameters.Add("@OP", input.op);
                 parameters.Add("@Estado", input.estado);
                 parameters.Add("@UO", input.uo);
                 parameters.Add("@Tipo", input.tipo);
@@ -36,16 +36,17 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                 parameters.Add("@TipoDespla", input.tipodespla);
                 parameters.Add("@Trabajador", input.trabajador);
 
-             
+
 
 
                 // queryasync devuelve IEnumerable<T>
                 var result = await connection.QueryAsync<DesplaTempEntity>("Patrimonio.usp_consul_lista", param: parameters, commandType: System.Data.CommandType.StoredProcedure);
 
                 return result.AsList(); //lo convierte a List<T> 
-                
 
                 
+
+
             }
         }
 

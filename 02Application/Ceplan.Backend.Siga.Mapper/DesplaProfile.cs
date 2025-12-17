@@ -57,9 +57,13 @@ namespace Ceplan.Backend.Siga.Application.Mapper
             .ForMember(d => d.B_FECH_DESPLA, opt => opt.MapFrom(s => s.B_FECH_DESPLA))
             .ForMember(d => d.B_TIPO_SALIDA, opt => opt.MapFrom(s => s.B_TIPO_SALIDA))
             .ForMember(d => d.B_MOTIVO_SALIDA, opt => opt.MapFrom(s => s.B_MOTIVO_SALIDA))
-            .ForMember(d => d.B_ESTADO_DESPL, opt => opt.MapFrom(s => s.B_ESTADO_DESPL));
+            .ForMember(d => d.B_ESTADO_DESPL, opt => opt.MapFrom(s => s.B_ESTADO_DESPL))
 
-            
+            .ForMember(d => d.codbien, opt => opt.MapFrom(s => s.codbien))
+            .ForMember(d => d.nombien, opt => opt.MapFrom(s => s.nombien))
+            .ForMember(d => d.idsolic, opt => opt.MapFrom(s => s.idsolic));
+
+
 
 
 

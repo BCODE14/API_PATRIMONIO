@@ -8,7 +8,7 @@ namespace Ceplan.Backend.Siga.Domain.Entity
 {
     public class DesplaTempEntity
     {
-        
+
         //datos de entrada
         public int op { get; set; }
 
@@ -20,7 +20,7 @@ namespace Ceplan.Backend.Siga.Domain.Entity
         public string? tiposalida { get; set; }
         public string? motivosalida { get; set; }
         public string? tipodespla { get; set; }
-        public string? trabajador { get; set; }
+        public string? trabajador { get; set; } //por aqui se envia la solicitud
 
         //respuesta
 
@@ -55,6 +55,17 @@ namespace Ceplan.Backend.Siga.Domain.Entity
         public string? B_MOTIVO_SALIDA { get; set; }
         public string? B_ESTADO_DESPL { get; set; }
 
+
+        public string? codbien { get; set; }
+        public string? nombien { get; set; }
+        public string? idsolic { get; set; }
+
+        public string? Poraprobar { get; set; }
+
+        public string? Aprobadas { get; set; }
+
+        public string? externo { get; set; }
+        public string? interno { get; set; }
 
 
 
