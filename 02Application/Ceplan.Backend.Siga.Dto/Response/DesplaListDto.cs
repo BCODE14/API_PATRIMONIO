@@ -45,7 +45,7 @@ namespace Ceplan.Backend.Siga.Application.Dto.Response
 
         public string? codbien { get; set; }
         public string? nombien { get; set; }
-        public string? idsolic { get; set; }
+     
 
         public string? Poraprobar { get; set; }
 
