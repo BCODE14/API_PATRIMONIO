@@ -148,17 +148,20 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                     cd.RelativeColumn();     // Observaciones
                                 });
 
-                                void Header(string text)
-                                    => t.Cell().Border(1).Padding(3).AlignCenter().Text(text).Bold();
+                                t.Header(header =>
+                                {
+                                    void HeaderCell(string text) =>
+                                        header.Cell().Border(1).Padding(3).AlignCenter().Text(text).Bold();
 
-                                Header("N°");
-                                Header("Codigo patrimonial");
-                                Header("Denominacion");
-                                Header("Marca");
-                                Header("Modelo");
-                                Header("Serie");
-                                Header("Estado");
-                                Header("Observaciones");
+                                    HeaderCell("N°");
+                                    HeaderCell("Codigo patrimonial");
+                                    HeaderCell("Denominacion");
+                                    HeaderCell("Marca");
+                                    HeaderCell("Modelo");
+                                    HeaderCell("Serie");
+                                    HeaderCell("Estado");
+                                    HeaderCell("Observaciones");
+                                });
 
                                 int index = 1;
                                 foreach (var item in input.Bienes)
@@ -173,12 +176,8 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                     t.Cell().Border(1).Padding(3).Text(item.B_OBS);
                                 }
 
-                                // Completar hasta 10 filas
-                                for (int i = index; i <= 10; i++)
-                                {
-                                    for (int j = 0; j < 9; j++)
-                                        t.Cell().Border(1).Padding(10).Text("");
-                                }
+                               
+                               
                             });
 
                             col.Item().Height(10);
@@ -264,10 +263,12 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                 parameters.Add("@BIENES", tabla.AsTableValuedParameter("Patrimonio.T_BIENES"));
                 parameters.Add("@S_CODSOLIC", input.S_CODSOLIC);
                 parameters.Add("@S_FECHASIG", input.S_FECHASIG);
+                parameters.Add("@S_FECHADESPL ", input.S_USUARIO);
 
                 parameters.Add("@NRODOC", nrodocu);
                 parameters.Add("@NOMDOC", nomsolic);
                 parameters.Add("@PDF", pdf);
+
 
                 //PARAMETRO DE SALIDA RESULTADO DEL SP
                 parameters.Add("@IDSOLIC", dbType: DbType.Int32, direction: ParameterDirection.Output);
