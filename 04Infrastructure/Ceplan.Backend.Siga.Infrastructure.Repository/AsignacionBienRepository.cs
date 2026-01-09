@@ -67,8 +67,8 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                         page.Content().Column(col =>
                         {
                             col.Item().AlignCenter().Text("ANEXO N.1").Bold();
-                        col.Item().AlignCenter().Text($"ASIGNACIoN EN USO DE BIENES MUEBLES PATRIMONIALESN N°{nrodocu}-\n{DateTime.Now.Year}")
-                                .Bold().FontSize(11);
+                            col.Item().AlignCenter().Text($"ASIGNACIoN EN USO DE BIENES MUEBLES PATRIMONIALESN N°{nrodocu}-\n{DateTime.Now.Year}")
+                                    .Bold().FontSize(11);
 
                             col.Item().Height(10);
 
@@ -947,7 +947,6 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                 Header("Denominacion");
                                 Header("Marca");
                                 Header("Modelo");
-                                Header("Color");
                                 Header("Serie");
                                 Header("Estado");
                                 Header("Observaciones");
@@ -1153,7 +1152,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                 });
 
                                 t.Cell().Text("TIPO").Bold();
-                                int tipoSalida = int.TryParse(input.S_TIPO_SALIDA, out int value)? value : 0;
+                                int tipoSalida = int.TryParse(input.S_TIPO_SALIDA, out int value) ? value : 0;
                                 t.Cell().Text(tipoSalida == 1 ? "✔ SALIDA" : "SALIDA");
                                 t.Cell().Text(tipoSalida == 2 ? "✔ REINGRESO" : "REINGRESO");
 
@@ -1176,7 +1175,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                 t.Cell().Text(motivo == "1" ? "✔ MANTENIMIENTO" : "MANTENIMIENTO");
                                 t.Cell().Text(motivo == "2" ? "✔ COMISIoN DE SERVICIOS" : "COMISIoN DE SERVICIOS");
                                 t.Cell().Text(motivo == "3" ? "✔ CAPACITACIoN Y/O EVENTO" : "CAPACITACIoN Y/O EVENTO");
-                            
+
                             });
 
                             c.Item().Height(8);
@@ -1235,7 +1234,6 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                 Header("Denominacion");
                                 Header("Marca");
                                 Header("Modelo");
-                                Header("Color");
                                 Header("Serie");
                                 Header("Estado");
                                 Header("Observaciones");
@@ -1443,7 +1441,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                     cd.RelativeColumn();
                                 });
 
-        
+
                                 t.Cell().Text("TIPO").Bold();
                                 int tipoSalida = int.TryParse(input.S_TIPO_SALIDA, out int value) ? value : 0;
                                 t.Cell().Text(tipoSalida == 1 ? "✔ SALIDA" : "SALIDA");
@@ -1462,7 +1460,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                     cd.RelativeColumn();
                                 });
 
-                                
+
                                 t.Cell().Text("MOTIVO").Bold();
                                 string motivo = input.S_MTV_SALIDA;
                                 t.Cell().Text(motivo == "1" ? "✔ MANTENIMIENTO" : "MANTENIMIENTO");
@@ -1526,7 +1524,6 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                 Header("Denominacion");
                                 Header("Marca");
                                 Header("Modelo");
-                                Header("Color");
                                 Header("Serie");
                                 Header("Estado");
                                 Header("Observaciones");
@@ -1625,7 +1622,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                 parameters.Add("@S_CODSOLIC", input.S_CODSOLIC);
                 parameters.Add("@S_FECHASIG", input.S_FECHASIG);
 
-                parameters.Add("@S_FECHADESPL", input.S_FECHADESPLA );
+                parameters.Add("@S_FECHADESPL", input.S_FECHADESPLA);
                 parameters.Add("@S_TIPO_DESPLA", input.S_TIPO_DESPLA);
                 parameters.Add("@S_TIPO_SALIDA", input.S_TIPO_SALIDA);
                 parameters.Add("@S_MTV_SALIDA", input.S_MTV_SALIDA);
