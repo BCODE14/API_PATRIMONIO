@@ -176,8 +176,8 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                     t.Cell().Border(1).Padding(3).Text(item.B_OBS);
                                 }
 
-                               
-                               
+
+
                             });
 
                             col.Item().Height(10);
@@ -1599,14 +1599,14 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
 
                 //guardar el registro
                 var parameters = new DynamicParameters();
-                parameters.Add("@A_DNI", input.A_DNI);
+                /*parameters.Add("@A_DNI", input.A_DNI);
                 parameters.Add("@A_NOM", input.A_NOM);
                 parameters.Add("@A_CORREO", input.A_CORREO);
                 parameters.Add("@A_CONTR", input.A_CONTR);
                 parameters.Add("@A_CARGO", input.A_CARGO);
                 parameters.Add("@A_SEDE", input.A_SEDE);
                 parameters.Add("@A_DIREC", input.A_DIREC);
-                parameters.Add("@A_CELU", input.A_CELU);
+                parameters.Add("@A_CELU", input.A_CELU);*/
                 parameters.Add("@A_IPPC", input.A_IPPC);
 
                 parameters.Add("@R_DNI", input.R_DNI);

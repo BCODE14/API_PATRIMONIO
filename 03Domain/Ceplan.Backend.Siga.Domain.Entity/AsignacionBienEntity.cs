@@ -7,7 +7,7 @@ namespace Ceplan.Backend.Siga.Domain.Entity
     public class AsignacionBienEntity : PaginatedEntity
     {
         //entrada
-                
+
         //datos de entrada
         public string A_DNI { get; set; }
         public string? A_NOM { get; set; }
@@ -44,6 +44,9 @@ namespace Ceplan.Backend.Siga.Domain.Entity
 
         public string? S_TIPO_SALIDA { get; set; }
         public string? S_MTV_SALIDA { get; set; }
+
+        public string? S_USUARIO { get; set; }
+
 
 
         //respuesta

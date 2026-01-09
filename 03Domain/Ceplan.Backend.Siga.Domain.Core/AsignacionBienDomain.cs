@@ -20,26 +20,26 @@ namespace Ceplan.Backend.Siga.Domain.Core
         {
             int op = int.Parse(input.S_CODSOLIC);
 
-            switch ( op )
+            switch (op)
             {
                 case 1:
                     return await this._applicationRepository.AsigBien(input);
-                    
+
                 case 2:
                     return await this._applicationRepository.Solicteletrabajo(input);
-                    
+
                 case 3:
                     return await this._applicationRepository.Solicdevolucion(input);
-                    
+
                 case 4:
                     return await this._applicationRepository.Solicdesinter(input);
-                    
+
                 case 5:
                     return await this._applicationRepository.Solicdesexter(input);
-                    
+
                 case 6:
                     return await this._applicationRepository.Solicdevobien(input);
-                    
+
                 default:
                     throw new Exception("Operacion no valida");
 
@@ -51,7 +51,7 @@ namespace Ceplan.Backend.Siga.Domain.Core
         {
             throw new NotImplementedException();
         }
-        
+
         public async Task<AsignacionBienEntity> Get(AsignacionBienEntity input)
         {
             throw new NotImplementedException();
@@ -67,6 +67,6 @@ namespace Ceplan.Backend.Siga.Domain.Core
             throw new NotImplementedException();
         }
 
-        
+
     }
 }
