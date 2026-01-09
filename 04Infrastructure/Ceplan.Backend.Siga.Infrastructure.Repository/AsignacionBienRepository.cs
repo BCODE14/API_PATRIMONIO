@@ -263,7 +263,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                 parameters.Add("@BIENES", tabla.AsTableValuedParameter("Patrimonio.T_BIENES"));
                 parameters.Add("@S_CODSOLIC", input.S_CODSOLIC);
                 parameters.Add("@S_FECHASIG", input.S_FECHASIG);
-                parameters.Add("@S_FECHADESPL ", input.S_USUARIO);
+                parameters.Add("@S_USUARIO ", input.S_FECHADESPLA);
 
                 parameters.Add("@NRODOC", nrodocu);
                 parameters.Add("@NOMDOC", nomsolic);
