@@ -1114,173 +1114,279 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                 byte[] pdf = QuestPDF.Fluent.Document.Create(d =>
                     d.Page(p =>
                     {
-                        p.Size(QuestPDF.Helpers.PageSizes.A4);
-                        p.Margin(25);
-                        p.DefaultTextStyle(x => x.FontSize(9));
+                        p.Margin(50);
+                        p.Size(QuestPDF.Helpers.PageSizes.A4.Landscape());
+                        p.PageColor(Colors.White);
+                        p.DefaultTextStyle(x => x.
+                            FontSize(9)
+                            .FontFamily("Calibri")
+                            .LineHeight(1.2f)
+                            );
+
+                        p.Header().Row(row =>
+                        {
+                            var logoBytes = File.ReadAllBytes("Data/logo.png");
+
+                            row.RelativeItem().AlignMiddle().Column(col =>
+                            {
+                                col.Item().Height(10);
+                                col.Item().AlignCenter().Text($" ORDEN DE SALIDA Y REINGRESO DE BIENES MUEBLES PATRIMONIALES N° {nrodocu}-{DateTime.Now.Year}").Bold().FontSize(11);
+                                col.Item().Height(10);
+                            });
+
+                        });
 
                         p.Content().Column(c =>
                         {
-                            c.Item().AlignCenter().Text("ANEXO N 4").Bold();
-                            c.Item().AlignCenter()
-                                .Text($"ORDEN DE SALIDA Y REINGRESO DE BIENES MUEBLES PATRIMONIALES N° {nrodocu}-\n{DateTime.Now.Year}")
-                                .Bold();
 
-                            c.Item().Height(10);
-                            c.Item().Border(1).Padding(5).Table(t =>
-                            {
-                                t.ColumnsDefinition(cd =>
-                                {
-                                    cd.RelativeColumn(3);
-                                    cd.RelativeColumn(1);
-                                });
+                            c.Item().Height(15);
 
-                                t.Cell().Text("ENTIDAD U ORGANIZACION DE LA ENTIDAD").Bold();
-                                t.Cell().Text("FECHA").Bold();
-
-                                t.Cell().Text("CENTRO NACIONAL DE PLANEAMIENTO ESTRATEGICO - CEPLAN");
-                                t.Cell().Text($"{DateTime.Now:dd/MM/yyyy}");
-                            });
-
-                            c.Item().Height(6);
-
-                            c.Item().Border(1).Padding(5).Table(t =>
+                            c.Item().Table(t =>
                             {
                                 t.ColumnsDefinition(cd =>
                                 {
                                     cd.ConstantColumn(50);
-                                    cd.RelativeColumn();
-                                    cd.RelativeColumn();
+                                    cd.RelativeColumn(9.6f);
+                                    cd.ConstantColumn(50);
+                                    cd.RelativeColumn(3);
                                 });
 
-                                t.Cell().Text("TIPO").Bold();
-                                int tipoSalida = int.TryParse(input.S_TIPO_SALIDA, out int value) ? value : 0;
-                                t.Cell().Text(tipoSalida == 1 ? "✔ SALIDA" : "SALIDA");
-                                t.Cell().Text(tipoSalida == 2 ? "✔ REINGRESO" : "REINGRESO");
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Entidad:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).Text("Centro Nacional de Planeamiento Estarte - CEPLAN");
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Fecha:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).Text($"{DateTime.Now:dd/MM/yyyy}");
+
+                                static IContainer CellData(IContainer container) =>
+                                        container.DefaultTextStyle(x => x.FontSize(9))
+                                        .Padding(7)
+                                    .AlignMiddle()
+                                    .AlignLeft();
 
                             });
 
-                            c.Item().Height(6);
 
-                            c.Item().Border(1).Padding(5).Table(t =>
+                            c.Item().Table(t =>
                             {
                                 t.ColumnsDefinition(cd =>
                                 {
-                                    cd.ConstantColumn(60);
-                                    cd.RelativeColumn();
-                                    cd.RelativeColumn();
-                                    cd.RelativeColumn();
-                                });
-
-                                t.Cell().Text("MOTIVO").Bold();
-                                string motivo = input.S_MTV_SALIDA;
-                                t.Cell().Text(motivo == "1" ? "✔ MANTENIMIENTO" : "MANTENIMIENTO");
-                                t.Cell().Text(motivo == "2" ? "✔ COMISIoN DE SERVICIOS" : "COMISIoN DE SERVICIOS");
-                                t.Cell().Text(motivo == "3" ? "✔ CAPACITACIoN Y/O EVENTO" : "CAPACITACIoN Y/O EVENTO");
-
-                            });
-
-                            c.Item().Height(8);
-
-                            c.Item().Border(1).Table(t =>
-                            {
-                                t.ColumnsDefinition(cd =>
-                                {
-                                    cd.RelativeColumn();
-                                    cd.RelativeColumn();
-                                });
-
-                                t.Cell().Padding(4).Text("DATOS DEL RESPONSABLE DEL TRASLADO").Bold();
-                                t.Cell().Padding(4).Text("DESTINO").Bold();
-
-                                t.Cell().Padding(4).Text($"Nombres y Apellidos: {input.A_NOM}");
-                                t.Cell().Padding(4).Text($"Representante / Proveedor / Usuario: {input.R_NOM}");
-
-                                t.Cell().Padding(4).Text($"DNI: {input.A_DNI}");
-                                t.Cell().Padding(4).Text($"DNI / RUC: {input.R_DNI}");
-
-                                t.Cell().Padding(4).Text($"Correo: {input.A_CORREO}");
-                                t.Cell().Padding(4).Text($"Direccion: {input.R_DIREC}");
-
-                                t.Cell().Padding(4).Text($"Organo / Unidad Organica: {input.A_UO}");
-                                t.Cell().Padding(4).Text($"Proveedor / organo: {input.R_UO}");
-
-                                t.Cell().Padding(4).Text($"Local o sede: {input.A_SEDE}");
-                                t.Cell().Padding(4).Text($"Local o sede: {input.R_SEDE}");
-                            });
-
-                            c.Item().Height(10);
-
-                            c.Item().Border(1).Table(t =>
-                            {
-                                t.ColumnsDefinition(cd =>
-                                {
-                                    cd.ConstantColumn(25);
-                                    cd.RelativeColumn();
+                                    cd.ConstantColumn(50);
                                     cd.RelativeColumn(2);
-                                    cd.RelativeColumn();
-                                    cd.RelativeColumn();
-                                    cd.RelativeColumn();
-                                    cd.RelativeColumn();
-                                    cd.RelativeColumn();
-                                    cd.RelativeColumn(1.5f);
+                                    cd.RelativeColumn(2);
+                                    cd.RelativeColumn(2);
+                                    cd.RelativeColumn(3);
+                                    cd.RelativeColumn(2);
+                                    cd.RelativeColumn(3);
+                                    cd.RelativeColumn(2);
+                                    cd.RelativeColumn(3);
+                                    cd.RelativeColumn(2);
+
                                 });
 
-                                void Header(string text)
-                                {
-                                    t.Cell().Border(1).Padding(3).AlignCenter().Text(text).Bold();
-                                }
+                                int tipoSalida = int.TryParse(input.S_TIPO_SALIDA, out int value) ? value : 0;
 
-                                Header("N°");
-                                Header("Codigo Patrimonial");
-                                Header("Denominacion");
-                                Header("Marca");
-                                Header("Modelo");
-                                Header("Serie");
-                                Header("Estado");
-                                Header("Observaciones");
+                                string motivo = input.S_MTV_SALIDA;
+
+                                t.Cell().ColumnSpan(4).Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten4).Element(CellData).AlignCenter().Text("Tipo").Bold();
+                                t.Cell().ColumnSpan(6).Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten4).Element(CellData).AlignCenter().Text("Motivo").Bold();
+
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Salida:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).AlignCenter().Text(tipoSalida == 1 ? "X" : " ").Bold();
+
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Reingreso:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).AlignCenter().Text(tipoSalida == 2 ? "X" : " ").Bold();
+
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Mantenimiento:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).AlignCenter().Text(motivo == "1" ? "X" : " ").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Comision de servicios:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).AlignCenter().Text(motivo == "2" ? "X" : " ").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Capacitacion/Evento:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).AlignCenter().Text(motivo == "3" ? "X" : " ").Bold();
+
+                                static IContainer CellData(IContainer container) =>
+                                        container.DefaultTextStyle(x => x.FontSize(9))
+                                        .Padding(7)
+                                        .AlignMiddle()
+                                        .AlignLeft();
+
+                            });
+
+                            c.Item().Table(t =>
+                            {
+                                t.ColumnsDefinition(cd =>
+                                {
+
+                                    cd.ConstantColumn(100);
+                                    cd.RelativeColumn(5);
+                                    cd.ConstantColumn(55);
+                                    cd.RelativeColumn(5);
+                                    cd.ConstantColumn(55);
+                                    cd.RelativeColumn(4);
+                                });
+
+                                t.Cell().ColumnSpan(6).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten4).Border(0.5f).Element(CellData).Text("I.- DATOS DEL RESPONSABLE DEL TRASLADO").Bold();
+
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Nombres y Apellidos:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).Text($"{input.A_NOM}");
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Dni:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).Text($"{input.A_DNI}");
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Correo:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).Text($"{input.A_CORREO}");
+
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Unidad Organica:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).Text($"{input.A_UO}");
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("sede:").Bold();
+                                t.Cell().ColumnSpan(3).BorderColor(Colors.Grey.Lighten3).Border(0.5f).Element(CellData).Text($"{input.A_SEDE}");
+
+                                t.Cell().ColumnSpan(6).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten4).Border(0.5f).Element(CellData).Text("II.- DATOS DEL DESTINO").Bold();
+
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Representante usuario:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).Text($"{input.R_NOM}");
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Dni/Ruc:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).Text($"{input.R_DNI}");
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Direccion:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).Text($"{input.R_DIREC}");
+
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Proveedor/Unidad Organica:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).Text($"input.R_UO");
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("sede:").Bold();
+                                t.Cell().ColumnSpan(3).BorderColor(Colors.Grey.Lighten3).Border(0.5f).Element(CellData).Text($"input.R_SEDE");
+
+                                static IContainer CellData(IContainer container) =>
+                                        container.DefaultTextStyle(x => x.FontSize(9))
+                                        .Padding(7)
+                                    .AlignMiddle()
+                                    .AlignLeft();
+
+                            });
+
+                            c.Item().Height(15);
+
+                            c.Item().Table(t =>
+                            {
+                                t.ColumnsDefinition(cd =>
+                                {
+                                    cd.ConstantColumn(25);   // N
+                                    cd.ConstantColumn(100);   // Codigo
+                                    cd.RelativeColumn(2);    // Denominacion
+                                    cd.ConstantColumn(70);     // Marca
+                                    cd.ConstantColumn(70);     // Modelo
+                                    cd.ConstantColumn(70);     // Serie
+                                    cd.ConstantColumn(70);   // Estado
+                                    cd.RelativeColumn(4);     // Observaciones
+                                });
+
+                                t.Header(header =>
+                                {
+                                    void HeaderCell(string text) =>
+                                        header.Cell().Element(CellStyle).Padding(7).AlignCenter().Text(text).Bold();
+
+                                    header.Cell().RowSpan(2).Element(CellStyle).Padding(4).AlignMiddle().AlignCenter().Text("N°");
+                                    header.Cell().ColumnSpan(6).Element(CellStyle).Padding(7).AlignCenter().Text("Descripcion").Bold();
+                                    header.Cell().RowSpan(2).Element(CellStyle).Padding(4).AlignMiddle().AlignCenter().Text("Observaciones");
+
+                                    HeaderCell("Codigo Patrimonial");
+                                    HeaderCell("Denominacion");
+                                    HeaderCell("Marca");
+                                    HeaderCell("Modelo");
+                                    HeaderCell("Serie");
+                                    HeaderCell("Estado");
+
+                                    static IContainer CellStyle(IContainer container) =>
+                                    container.DefaultTextStyle(x => x.SemiBold().FontSize(9))
+
+                                    .Background(Colors.Grey.Lighten4)
+                                    .Border(0.2f)
+                                    .BorderColor(Colors.Grey.Lighten3);
+                                });
 
                                 int index = 1;
-                                foreach (var item in input.Bienes)
+
+                                foreach (var v in input.Bienes)
                                 {
-                                    t.Cell().Border(1).Padding(3).AlignCenter().Text(index++);
-                                    t.Cell().Border(1).Padding(3).Text(item.B_CODACTIVO);
-                                    t.Cell().Border(1).Padding(3).Text(item.B_DESCRIP);
-                                    t.Cell().Border(1).Padding(3).Text(item.B_MARCA);
-                                    t.Cell().Border(1).Padding(3).Text(item.B_MODE);
-                                    t.Cell().Border(1).Padding(3).Text(item.B_SERIE);
-                                    t.Cell().Border(1).Padding(3).AlignCenter().Text(item.B_ESTADO);
-                                    t.Cell().Border(1).Padding(3).Text(item.B_OBS);
+                                    var bgColor = index % 2 == 0
+                                                ? Colors.Grey.Lighten5
+                                                : Colors.White;
+
+                                    t.Cell().Background(bgColor).Element(CellData).ShowEntire().Text(index);
+                                    t.Cell().Background(bgColor).Element(CellData).ShowEntire().Text(item.B_CODACTIVO);
+                                    t.Cell().Background(bgColor).Element(CellData).ShowEntire().Text(item.B_DESCRIP);
+                                    t.Cell().Background(bgColor).Element(CellData).ShowEntire().Text(item.B_MARCA);
+                                    t.Cell().Background(bgColor).Element(CellData).ShowEntire().Text(item.B_MODE);
+                                    t.Cell().Background(bgColor).Element(CellData).ShowEntire().Text(item.B_SERIE);
+                                    t.Cell().Background(bgColor).Element(CellData).ShowEntire().Text(item.B_ESTADO).Justify();
+                                    t.Cell().Background(bgColor).Element(CellData).ShowEntire().Text(item.B_OBS).Justify();
+
+                                    index++;
+
                                 }
 
+                                static IContainer CellData(IContainer container) =>
+                                container.DefaultTextStyle(x => x.FontSize(9))
+                            .Border(0.2f)
+                            .BorderColor(Colors.Grey.Lighten3)
+                            .AlignMiddle()
+                            .AlignCenter()
+                            .Padding(5);
                             });
 
-                            c.Item().Height(20);
+                            c.Item().Height(15);
 
-                            c.Item().Row(r =>
+                            c.Item().Row(row =>
                             {
-                                r.RelativeItem().AlignCenter().Column(col =>
-                                {
-                                    col.Item().Height(25);
-                                    col.Item().BorderTop(1);
-                                    col.Item().AlignCenter().Text("Responsable del Traslado");
-                                });
 
-                                r.RelativeItem().AlignCenter().Column(col =>
-                                {
-                                    col.Item().Height(25);
-                                    col.Item().BorderTop(1);
-                                    col.Item().AlignCenter()
-                                        .Text("Jefe de la Direccion u Oficina que autoriza el traslado");
-                                });
+                                row.RelativeItem()
 
-                                r.RelativeItem().AlignCenter().Column(col =>
-                                {
-                                    col.Item().Height(25);
-                                    col.Item().BorderTop(1);
-                                    col.Item().AlignCenter().Text("Visto Bueno Patrimonio");
-                                });
+                                    .BorderLeft(4).Background(Colors.Black)
+                                    .Background(Colors.Grey.Lighten5)
+                                    .Column(col =>
+                                    {
+                                        c.Item()
+                                            .PaddingTop(5)
+                                            .PaddingLeft(10)
+                                           .Text("CONSIDERACIONES:")
+                                           .Bold()
+                                           .FontSize(9);
+
+                                        c.Item()
+                                           .PaddingLeft(10)
+                                           .PaddingTop(5)
+                                           .PaddingBottom(5)
+                                           .Text("El usuario es responsable de la permanencia y conservacion de cada uno de los bienes descritos, debiendo tomar las precauciones del caso para evitar sustracciones, deterioros, etc. Cualquier necesidad de traslado del bien mueble patrimonial dentro o fuera del local de la Entidad, es previamente comunicado al Especialista en Gestion Patrimonial y Almacen.")
+                                           .FontSize(9);
+                                    });
                             });
-                        });
+
+                            c.Item().Height(15);
+                            c.Item().Row(row =>
+                            {
+                                row.RelativeItem().AlignCenter().Column(c =>
+                                {
+
+                                    c.Item().Height(60);
+                                    c.Item().Text("________________________________________");
+                                    c.Item().AlignCenter().Text("Responsable del Traslado").Bold();
+                                });
+
+                                row.RelativeItem().AlignCenter().Column(c =>
+                                {
+
+                                    c.Item().Height(60);
+                                    c.Item().Text("________________________________________");
+                                    c.Item().AlignCenter().Text("Jefe de la Oficina que Traslada el bien").Bold();
+                                });
+
+                                row.RelativeItem().AlignCenter().Column(c =>
+                                {
+
+                                    c.Item().Height(60);
+                                    c.Item().Text("________________________________________");
+                                    c.Item().AlignCenter().Text("Visto bueno de Patrimonio").Bold();
+                                });
+
+                            });
+
+                        });//columna
+
                     })
                 ).GeneratePdf();
 
@@ -1404,173 +1510,279 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                 byte[] pdf = QuestPDF.Fluent.Document.Create(d =>
                     d.Page(p =>
                     {
-                        p.Size(QuestPDF.Helpers.PageSizes.A4);
-                        p.Margin(25);
-                        p.DefaultTextStyle(x => x.FontSize(9));
+                        p.Size(QuestPDF.Helpers.PageSizes.A4.Landscape());
+                        p.Margin(50);
+                        p.PageColor(Colors.White);
+                        p.DefaultTextStyle(x => x.
+                    FontSize(9)
+                    .FontFamily("Calibri")
+                    .LineHeight(1.2f)
+                    );
+
+
+                        p.Header().Row(row =>
+                            {
+                                var logoBytes = File.ReadAllBytes("Data/logo.png");
+
+                                row.RelativeItem().AlignMiddle().Column(col =>
+                                {
+                                    col.Item().Height(10);
+                                    col.Item().AlignCenter().Text($" ORDEN DE SALIDA Y REINGRESO DE BIENES MUEBLES PATRIMONIALES N° {nrodocu}-{DateTime.Now.Year}").Bold().FontSize(11);
+                                    col.Item().Height(10);
+                                });
+
+                            });
 
                         p.Content().Column(c =>
                         {
-                            c.Item().AlignCenter().Text("ANEXO N. 4").Bold();
-                            c.Item().AlignCenter()
-                                .Text($"ORDEN DE SALIDA Y REINGRESO DE BIENES MUEBLES PATRIMONIALES N. {nrodocu}-\n{DateTime.Now.Year}")
-                                .Bold();
 
-                            c.Item().Height(10);
-                            c.Item().Border(1).Padding(5).Table(t =>
-                            {
-                                t.ColumnsDefinition(cd =>
-                                {
-                                    cd.RelativeColumn(3);
-                                    cd.RelativeColumn(1);
-                                });
+                            c.Item().Height(15);
 
-                                t.Cell().Text("ENTIDAD U ORGANIZACION DE LA ENTIDAD").Bold();
-                                t.Cell().Text("FECHA").Bold();
-
-                                t.Cell().Text("CENTRO NACIONAL DE PLANEAMIENTO ESTRATEGICO - CEPLAN");
-                                t.Cell().Text($"{DateTime.Now:dd/MM/yyyy}");
-                            });
-
-                            c.Item().Height(6);
-
-                            c.Item().Border(1).Padding(5).Table(t =>
+                            c.Item().Table(t =>
                             {
                                 t.ColumnsDefinition(cd =>
                                 {
                                     cd.ConstantColumn(50);
-                                    cd.RelativeColumn();
-                                    cd.RelativeColumn();
+                                    cd.RelativeColumn(9.6f);
+                                    cd.ConstantColumn(50);
+                                    cd.RelativeColumn(3);
                                 });
 
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Entidad:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).Text("Centro Nacional de Planeamiento Estarte - CEPLAN");
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Fecha:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).Text($"{DateTime.Now:dd/MM/yyyy}");
 
-                                t.Cell().Text("TIPO").Bold();
-                                int tipoSalida = int.TryParse(input.S_TIPO_SALIDA, out int value) ? value : 0;
-                                t.Cell().Text(tipoSalida == 1 ? "✔ SALIDA" : "SALIDA");
-                                t.Cell().Text(tipoSalida == 2 ? "✔ REINGRESO" : "REINGRESO");
+                                static IContainer CellData(IContainer container) =>
+                                        container.DefaultTextStyle(x => x.FontSize(9))
+                                        .Padding(7)
+                                    .AlignMiddle()
+                                    .AlignLeft();
+
                             });
 
-                            c.Item().Height(6);
 
-                            c.Item().Border(1).Padding(5).Table(t =>
+                            c.Item().Table(t =>
                             {
                                 t.ColumnsDefinition(cd =>
                                 {
-                                    cd.ConstantColumn(60);
-                                    cd.RelativeColumn();
-                                    cd.RelativeColumn();
-                                    cd.RelativeColumn();
-                                });
-
-
-                                t.Cell().Text("MOTIVO").Bold();
-                                string motivo = input.S_MTV_SALIDA;
-                                t.Cell().Text(motivo == "1" ? "✔ MANTENIMIENTO" : "MANTENIMIENTO");
-                                t.Cell().Text(motivo == "2" ? "✔ COMISIoN DE SERVICIOS" : "COMISIoN DE SERVICIOS");
-                                t.Cell().Text(motivo == "3" ? "✔ CAPACITACIoN Y/O EVENTO" : "CAPACITACIoN Y/O EVENTO");
-                            });
-
-                            c.Item().Height(8);
-
-                            c.Item().Border(1).Table(t =>
-                            {
-                                t.ColumnsDefinition(cd =>
-                                {
-                                    cd.RelativeColumn();
-                                    cd.RelativeColumn();
-                                });
-
-                                t.Cell().Padding(4).Text("DATOS DEL RESPONSABLE DEL TRASLADO").Bold();
-                                t.Cell().Padding(4).Text("DESTINO").Bold();
-
-                                t.Cell().Padding(4).Text($"Nombres y Apellidos: {input.A_NOM}");
-                                t.Cell().Padding(4).Text($"Representante / Proveedor / Usuario: {input.R_NOM}");
-
-                                t.Cell().Padding(4).Text($"DNI: {input.A_DNI}");
-                                t.Cell().Padding(4).Text($"DNI / RUC: {input.R_DNI}");
-
-                                t.Cell().Padding(4).Text($"Correo: {input.A_CORREO}");
-                                t.Cell().Padding(4).Text($"Direccion: {input.R_DIREC}");
-
-                                t.Cell().Padding(4).Text($"Organo / Unidad Organica: {input.A_UO}");
-                                t.Cell().Padding(4).Text($"Proveedor / organo: {input.R_UO}");
-
-                                t.Cell().Padding(4).Text($"Local o sede: {input.A_SEDE}");
-                                t.Cell().Padding(4).Text($"Local o sede: {input.R_SEDE}");
-                            });
-
-                            c.Item().Height(10);
-
-                            c.Item().Border(1).Table(t =>
-                            {
-                                t.ColumnsDefinition(cd =>
-                                {
-                                    cd.ConstantColumn(25);
-                                    cd.RelativeColumn();
+                                    cd.ConstantColumn(50);
                                     cd.RelativeColumn(2);
-                                    cd.RelativeColumn();
-                                    cd.RelativeColumn();
-                                    cd.RelativeColumn();
-                                    cd.RelativeColumn();
-                                    cd.RelativeColumn();
-                                    cd.RelativeColumn(1.5f);
+                                    cd.RelativeColumn(2);
+                                    cd.RelativeColumn(2);
+                                    cd.RelativeColumn(3);
+                                    cd.RelativeColumn(2);
+                                    cd.RelativeColumn(3);
+                                    cd.RelativeColumn(2);
+                                    cd.RelativeColumn(3);
+                                    cd.RelativeColumn(2);
+
                                 });
 
-                                void Header(string text)
-                                {
-                                    t.Cell().Border(1).Padding(3).AlignCenter().Text(text).Bold();
-                                }
+                                int tipoSalida = int.TryParse(input.S_TIPO_SALIDA, out int value) ? value : 0;
 
-                                Header("N°");
-                                Header("Codigo Patrimonial");
-                                Header("Denominacion");
-                                Header("Marca");
-                                Header("Modelo");
-                                Header("Serie");
-                                Header("Estado");
-                                Header("Observaciones");
+                                string motivo = input.S_MTV_SALIDA;
+
+                                t.Cell().ColumnSpan(4).Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten4).Element(CellData).AlignCenter().Text("Tipo").Bold();
+                                t.Cell().ColumnSpan(6).Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten4).Element(CellData).AlignCenter().Text("Motivo").Bold();
+
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Salida:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).AlignCenter().Text(tipoSalida == 1 ? "X" : " ").Bold();
+
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Reingreso:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).AlignCenter().Text(tipoSalida == 2 ? "X" : " ").Bold();
+
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Mantenimiento:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).AlignCenter().Text(motivo == "1" ? "X" : " ").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Comision de servicios:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).AlignCenter().Text(motivo == "2" ? "X" : " ").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Capacitacion/Evento:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).AlignCenter().Text(motivo == "3" ? "X" : " ").Bold();
+
+                                static IContainer CellData(IContainer container) =>
+                                        container.DefaultTextStyle(x => x.FontSize(9))
+                                        .Padding(7)
+                                        .AlignMiddle()
+                                        .AlignLeft();
+
+                            });
+
+                            c.Item().Table(t =>
+                            {
+                                t.ColumnsDefinition(cd =>
+                                {
+
+                                    cd.ConstantColumn(100);
+                                    cd.RelativeColumn(5);
+                                    cd.ConstantColumn(55);
+                                    cd.RelativeColumn(5);
+                                    cd.ConstantColumn(55);
+                                    cd.RelativeColumn(4);
+                                });
+
+                                t.Cell().ColumnSpan(6).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten4).Border(0.5f).Element(CellData).Text("I.- DATOS DEL RESPONSABLE DEL TRASLADO").Bold();
+
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Nombres y Apellidos:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).Text($"{input.A_NOM}");
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Dni:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).Text($"{input.A_DNI}");
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Correo:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).Text($"{input.A_CORREO}");
+
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Unidad Organica:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).Text($"{input.A_UO}");
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("sede:").Bold();
+                                t.Cell().ColumnSpan(3).BorderColor(Colors.Grey.Lighten3).Border(0.5f).Element(CellData).Text($"{input.A_SEDE}");
+
+                                t.Cell().ColumnSpan(6).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten4).Border(0.5f).Element(CellData).Text("II.- DATOS DEL DESTINO").Bold();
+
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Representante usuario:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).Text($"{input.R_NOM}");
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Dni/Ruc:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).Text($"{input.R_DNI}");
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Direccion:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).Text($"{input.R_DIREC}");
+
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("Proveedor/Unidad Organica:").Bold();
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Element(CellData).Text($"input.R_UO");
+                                t.Cell().Border(0.5f).BorderColor(Colors.Grey.Lighten3).Background(Colors.Grey.Lighten5).Element(CellData).Text("sede:").Bold();
+                                t.Cell().ColumnSpan(3).BorderColor(Colors.Grey.Lighten3).Border(0.5f).Element(CellData).Text($"input.R_SEDE");
+
+                                static IContainer CellData(IContainer container) =>
+                                        container.DefaultTextStyle(x => x.FontSize(9))
+                                        .Padding(7)
+                                    .AlignMiddle()
+                                    .AlignLeft();
+
+                            });
+
+                            c.Item().Height(15);
+
+                            c.Item().Table(t =>
+                            {
+                                t.ColumnsDefinition(cd =>
+                                {
+                                    cd.ConstantColumn(25);   // N
+                                    cd.ConstantColumn(100);   // Codigo
+                                    cd.RelativeColumn(2);    // Denominacion
+                                    cd.ConstantColumn(70);     // Marca
+                                    cd.ConstantColumn(70);     // Modelo
+                                    cd.ConstantColumn(70);     // Serie
+                                    cd.ConstantColumn(70);   // Estado
+                                    cd.RelativeColumn(4);     // Observaciones
+                                });
+
+                                t.Header(header =>
+                                {
+                                    void HeaderCell(string text) =>
+                                        header.Cell().Element(CellStyle).Padding(7).AlignCenter().Text(text).Bold();
+
+                                    header.Cell().RowSpan(2).Element(CellStyle).Padding(4).AlignMiddle().AlignCenter().Text("N°");
+                                    header.Cell().ColumnSpan(6).Element(CellStyle).Padding(7).AlignCenter().Text("Descripcion").Bold();
+                                    header.Cell().RowSpan(2).Element(CellStyle).Padding(4).AlignMiddle().AlignCenter().Text("Observaciones");
+
+                                    HeaderCell("Codigo Patrimonial");
+                                    HeaderCell("Denominacion");
+                                    HeaderCell("Marca");
+                                    HeaderCell("Modelo");
+                                    HeaderCell("Serie");
+                                    HeaderCell("Estado");
+
+                                    static IContainer CellStyle(IContainer container) =>
+                                    container.DefaultTextStyle(x => x.SemiBold().FontSize(9))
+
+                                    .Background(Colors.Grey.Lighten4)
+                                    .Border(0.2f)
+                                    .BorderColor(Colors.Grey.Lighten3);
+                                });
 
                                 int index = 1;
-                                foreach (var item in input.Bienes)
+
+                                foreach (var v in input.Bienes)
                                 {
-                                    t.Cell().Border(1).Padding(3).AlignCenter().Text(index++);
-                                    t.Cell().Border(1).Padding(3).Text(item.B_CODACTIVO);
-                                    t.Cell().Border(1).Padding(3).Text(item.B_DESCRIP);
-                                    t.Cell().Border(1).Padding(3).Text(item.B_MARCA);
-                                    t.Cell().Border(1).Padding(3).Text(item.B_MODE);
-                                    t.Cell().Border(1).Padding(3).Text(item.B_SERIE);
-                                    t.Cell().Border(1).Padding(3).AlignCenter().Text(item.B_ESTADO);
-                                    t.Cell().Border(1).Padding(3).Text(item.B_OBS);
+                                    var bgColor = index % 2 == 0
+                                                ? Colors.Grey.Lighten5
+                                                : Colors.White;
+
+                                    t.Cell().Background(bgColor).Element(CellData).ShowEntire().Text(index);
+                                    t.Cell().Background(bgColor).Element(CellData).ShowEntire().Text(item.B_CODACTIVO);
+                                    t.Cell().Background(bgColor).Element(CellData).ShowEntire().Text(item.B_DESCRIP);
+                                    t.Cell().Background(bgColor).Element(CellData).ShowEntire().Text(item.B_MARCA);
+                                    t.Cell().Background(bgColor).Element(CellData).ShowEntire().Text(item.B_MODE);
+                                    t.Cell().Background(bgColor).Element(CellData).ShowEntire().Text(item.B_SERIE);
+                                    t.Cell().Background(bgColor).Element(CellData).ShowEntire().Text(item.B_ESTADO).Justify();
+                                    t.Cell().Background(bgColor).Element(CellData).ShowEntire().Text(item.B_OBS).Justify();
+
+                                    index++;
+
                                 }
 
+                                static IContainer CellData(IContainer container) =>
+                                container.DefaultTextStyle(x => x.FontSize(9))
+                            .Border(0.2f)
+                            .BorderColor(Colors.Grey.Lighten3)
+                            .AlignMiddle()
+                            .AlignCenter()
+                            .Padding(5);
                             });
 
-                            c.Item().Height(20);
+                            c.Item().Height(15);
 
-                            c.Item().Row(r =>
+                            c.Item().Row(row =>
                             {
-                                r.RelativeItem().AlignCenter().Column(col =>
+
+                                row.RelativeItem()
+
+                                    .BorderLeft(4).Background(Colors.Black)
+                                    .Background(Colors.Grey.Lighten5)
+                                    .Column(col =>
+                                    {
+                                        c.Item()
+                                            .PaddingTop(5)
+                                            .PaddingLeft(10)
+                                           .Text("CONSIDERACIONES:")
+                                           .Bold()
+                                           .FontSize(9);
+
+                                        c.Item()
+                                           .PaddingLeft(10)
+                                           .PaddingTop(5)
+                                           .PaddingBottom(5)
+                                           .Text("El usuario es responsable de la permanencia y conservacion de cada uno de los bienes descritos, debiendo tomar las precauciones del caso para evitar sustracciones, deterioros, etc. Cualquier necesidad de traslado del bien mueble patrimonial dentro o fuera del local de la Entidad, es previamente comunicado al Especialista en Gestion Patrimonial y Almacen.")
+                                           .FontSize(9);
+                                    });
+                            });
+
+                            c.Item().Height(15);
+                            c.Item().Row(row =>
+                            {
+                                row.RelativeItem().AlignCenter().Column(c =>
                                 {
-                                    col.Item().Height(25);
-                                    col.Item().BorderTop(1);
-                                    col.Item().AlignCenter().Text("Responsable del Traslado");
+
+                                    c.Item().Height(60);
+                                    c.Item().Text("________________________________________");
+                                    c.Item().AlignCenter().Text("Responsable del Traslado").Bold();
                                 });
 
-                                r.RelativeItem().AlignCenter().Column(col =>
+                                row.RelativeItem().AlignCenter().Column(c =>
                                 {
-                                    col.Item().Height(25);
-                                    col.Item().BorderTop(1);
-                                    col.Item().AlignCenter()
-                                        .Text("Jefe de la Direccion u Oficina que autoriza el traslado");
+
+                                    c.Item().Height(60);
+                                    c.Item().Text("________________________________________");
+                                    c.Item().AlignCenter().Text("Jefe de la Oficina que Traslada el bien").Bold();
                                 });
 
-                                r.RelativeItem().AlignCenter().Column(col =>
+                                row.RelativeItem().AlignCenter().Column(c =>
                                 {
-                                    col.Item().Height(25);
-                                    col.Item().BorderTop(1);
-                                    col.Item().AlignCenter().Text("Visto Bueno Patrimonio");
+
+                                    c.Item().Height(60);
+                                    c.Item().Text("________________________________________");
+                                    c.Item().AlignCenter().Text("Visto bueno de Patrimonio").Bold();
                                 });
+
                             });
                         });
+
                     })
                 ).GeneratePdf();
 
