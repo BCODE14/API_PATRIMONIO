@@ -31,6 +31,9 @@ namespace Ceplan.Backend.Siga.Domain.Entity
         public string? R_CELU { get; set; }
         public string? R_UO { get; set; }
 
+        public string? R_ID_UBI_FISICA { get; set; }
+        public string? R_NOM_UBI_FISICA { get; set; }
+
         //BIENES
         public List<BienAsignacionEntity> Bienes { get; set; }
 
