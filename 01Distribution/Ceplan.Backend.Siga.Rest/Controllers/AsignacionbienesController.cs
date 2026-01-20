@@ -25,7 +25,7 @@ namespace Ceplan.Backend.Siga.Rest.Controllers
         [Produces("application/pdf")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType( StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Asigbien([FromBody] AsignacionBienQuery oInput)
         {
             // var oResult = await this._mediator.Send(oInput); //envia comando o consulta al mediator para que busque al handle encargado de ejecutar
@@ -33,7 +33,7 @@ namespace Ceplan.Backend.Siga.Rest.Controllers
 
             var result = await _mediator.Send(oInput);
 
-            var archivo = $"SolicitudAsignacionBienes_{DateTime.Now:yyyyMMdd}.pdf";
+            var archivo = $"SolicitudPatrimonio_{DateTime.Now:yyyyMMdd}.pdf";
 
             if (result.bSuccess && result.oData != null)
             {

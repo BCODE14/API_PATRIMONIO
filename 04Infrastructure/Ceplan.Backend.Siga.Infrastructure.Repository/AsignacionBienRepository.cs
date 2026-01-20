@@ -260,22 +260,22 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                             });
 
                             col.Item().Height(15);
-                            col.Item().Row(row =>
+                            col.Item().ShowEntire().Row(row =>
                             {
                                 row.RelativeItem().AlignCenter().Column(c =>
                                 {
-                                    //c.Item().AlignCenter().Text("Quien recibe").Bold();
+                                    c.Item().AlignCenter().Text("Quien recibe").Bold();
                                     c.Item().Height(50);
                                     c.Item().Text("_______________________________________________________________");
-                                    c.Item().AlignCenter().Text("Quien recibe - Usuario").Bold();
+                                    c.Item().AlignCenter().Text("Usuario").Bold();
                                 });
 
                                 row.RelativeItem().AlignCenter().Column(c =>
                                 {
-                                    //c.Item().AlignCenter().Text("Quien entrega").Bold();
+                                    c.Item().AlignCenter().Text("Quien entrega").Bold();
                                     c.Item().Height(50);
                                     c.Item().Text("_______________________________________________________________");
-                                    c.Item().AlignCenter().Text("Quien entrega - Patrimonio").Bold();
+                                    c.Item().AlignCenter().Text("Patrimonio").Bold();
                                 });
                             });
 
@@ -614,22 +614,22 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                             });
 
                             col.Item().Height(15);
-                            col.Item().Row(row =>
+                            col.Item().ShowEntire().Row(row =>
                             {
                                 row.RelativeItem().AlignCenter().Column(c =>
                                 {
-                                    //c.Item().AlignCenter().Text("Quien recibe").Bold();
+                                    c.Item().AlignCenter().Text("Quien recibe").Bold();
                                     c.Item().Height(50);
                                     c.Item().Text("_______________________________________________________________");
-                                    c.Item().AlignCenter().Text("Quien recibe - Usuario").Bold();
+                                    c.Item().AlignCenter().Text("Usuario").Bold();
                                 });
 
                                 row.RelativeItem().AlignCenter().Column(c =>
                                 {
-                                    //c.Item().AlignCenter().Text("Quien entrega").Bold();
+                                    c.Item().AlignCenter().Text("Quien entrega").Bold();
                                     c.Item().Height(50);
                                     c.Item().Text("_______________________________________________________________");
-                                    c.Item().AlignCenter().Text("Quien entrega - Patrimonio").Bold();
+                                    c.Item().AlignCenter().Text("Patrimonio").Bold();
                                 });
                             });
 
@@ -957,7 +957,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                             });
 
                                             col.Item().Height(15);
-                                            col.Item().Row(row =>
+                                            col.Item().ShowEntire().Row(row =>
                                             {
                                                 row.RelativeItem().AlignCenter().Column(c =>
                                                 {
@@ -1306,30 +1306,30 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                  });
 
                                  col.Item().Height(20);
-                                 col.Item().Row(row =>
+                                 col.Item().ShowEntire().Row(row =>
                                  {
                                      row.RelativeItem().AlignCenter().Column(c =>
                                  {
-                                     //c.Item().AlignCenter().Text("Quien entrega:").Bold();
+                                     c.Item().AlignCenter().Text("Quien entrega:").Bold();
                                      c.Item().Height(50);
                                      c.Item().Text("_________________________________________");
-                                     c.Item().AlignCenter().Text("Quien entrega - Usuario").Bold();
+                                     c.Item().AlignCenter().Text("Usuario").Bold();
                                  });
 
                                      row.RelativeItem().AlignCenter().Column(c =>
                                      {
-                                         //c.Item().AlignCenter().Text("Quien recibe:").Bold();
+                                         c.Item().AlignCenter().Text("Quien recibe:").Bold();
                                          c.Item().Height(50);
                                          c.Item().Text("________________________________________");
-                                         c.Item().AlignCenter().Text("Quien recibe - Usuario").Bold();
+                                         c.Item().AlignCenter().Text("Usuario").Bold();
                                      });
 
                                      row.RelativeItem().AlignCenter().Column(c =>
                                      {
-                                         // c.Item().AlignCenter().Text("Visto Bueno:").Bold();
+                                         c.Item().AlignCenter().Text("Visto Bueno:").Bold();
                                          c.Item().Height(50);
                                          c.Item().Text("_________________________________________");
-                                         c.Item().AlignCenter().Text("Visto Bueno - Patrimonio").Bold();
+                                         c.Item().AlignCenter().Text("Patrimonio").Bold();
                                      });
                                  });
 
@@ -1698,7 +1698,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                 row.RelativeItem()
 
                                     .BorderLeft(4).Background(Colors.Black)
-                                    .Background(Colors.Grey.Lighten5)
+                                    .Background(Colors.Grey.Lighten4)
                                     .Column(col =>
                                     {
                                         c.Item()
@@ -1718,7 +1718,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                             });
 
                             c.Item().Height(20);
-                            c.Item().Row(row =>
+                            c.Item().ShowEntire().Row(row =>
                             {
                                 row.RelativeItem().AlignCenter().Column(c =>
                                 {
@@ -2111,8 +2111,8 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
 
                                 row.RelativeItem()
 
-                                    .BorderLeft(5).Background(Colors.Black)
-                                    .Background(Colors.Grey.Lighten5)
+                                    .BorderLeft(4).Background(Colors.Black)
+                                    .Background(Colors.Grey.Lighten4)
                                     .Column(col =>
                                     {
                                         c.Item()
@@ -2132,7 +2132,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                             });
 
                             c.Item().Height(15);
-                            c.Item().Row(row =>
+                            c.Item().ShowEntire().Row(row =>
                             {
                                 row.RelativeItem().AlignCenter().Column(c =>
                                 {
