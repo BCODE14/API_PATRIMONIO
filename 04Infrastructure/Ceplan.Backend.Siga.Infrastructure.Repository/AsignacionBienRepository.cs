@@ -87,7 +87,6 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                 col.Item().Height(10);
 
                             });
-                                                
                         });
 
                         page.Content().Column(col =>
@@ -121,8 +120,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                             {
                                 t.ColumnsDefinition(cd =>
                                 {
-
-                                    cd.ConstantColumn(120); 
+                                    cd.ConstantColumn(120);
                                     cd.RelativeColumn(5);
                                     cd.RelativeColumn(3);
                                     cd.RelativeColumn(3);
@@ -202,7 +200,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                             .BorderColor(Colors.Grey.Lighten1);
                                         });
 
-                                         int index = 1;
+                                        int index = 1;
 
                                         foreach (var item in input.Bienes)
                                         {
@@ -219,7 +217,7 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                                             t.Cell().Background(bgColor).Element(CellData).ShowEntire().Text(item.B_ESTADO).Justify();
                                             t.Cell().Background(bgColor).Element(CellData).ShowEntire().Text(item.B_OBS).Justify();
 
-                                            index ++;
+                                            index++;
 
                                         }
 
@@ -291,11 +289,8 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                             x.Span(" de ").FontSize(9);
                             x.TotalPages().FontSize(9);
                         });
-            
-                        
                     });
                 }).GeneratePdf();
-
 
                 //GENERAR TABLA DE BIENES
                 var tabla = new DataTable();

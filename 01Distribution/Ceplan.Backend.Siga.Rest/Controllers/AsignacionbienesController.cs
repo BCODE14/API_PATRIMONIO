@@ -33,7 +33,7 @@ namespace Ceplan.Backend.Siga.Rest.Controllers
 
             var result = await _mediator.Send(oInput);
 
-            var archivo = $"SolicitudAsignacionBienes_{DateTime.Now:yyyyMMdd}.pdf";
+            var archivo = $"Solicitudpatrimonio_{DateTime.Now:yyyyMMdd}.pdf";
 
             if (result.bSuccess && result.oData != null)
             {
