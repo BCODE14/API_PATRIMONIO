@@ -8,6 +8,7 @@ namespace Ceplan.Backend.Siga.Application.Query
         //definicion de datos de entrada asignacion de bienes
         public string cod_bien { get; set; }
         public string mon_uo_asig { get; set; }
+        public string cod_ubi_entr { get; set; }
         public string mon_ubi_entr { get; set; }
         public string dni_emple_usur_para { get; set; }
         public string motivo { get; set; }

@@ -24,16 +24,17 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                 var parameters = new DynamicParameters();
                 parameters.Add("@COD_BIEN", input.cod_bien);
                 parameters.Add("@NOM_UO_ASIG", input.mon_uo_asig);
+                parameters.Add("@COD_UBI_ENTR", input.cod_ubi_entr);
                 parameters.Add("@NOM_UBI_ENTR", input.mon_ubi_entr);
                 parameters.Add("@DNI_EMPLE_USUR_PARA", input.dni_emple_usur_para);
                 parameters.Add("@MOTIVO", input.motivo);
                 parameters.Add("@FECH_ASIG", input.fecha_asig);
                 parameters.Add("@DNI_EMPLE_RESP_PARA", input.dni_emple_resp_para);
 
-                var result = await connection.ExecuteScalarAsync<string>("[sp_siga_parametros]",parameters,commandType: CommandType.StoredProcedure);
+                var result = await connection.ExecuteScalarAsync<string>("[sp_siga_parametros]", parameters, commandType: CommandType.StoredProcedure);
 
                 return result;
-                
+
             }
         }
 

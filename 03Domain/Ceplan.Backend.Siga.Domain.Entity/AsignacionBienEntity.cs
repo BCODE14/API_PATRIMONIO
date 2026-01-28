@@ -52,6 +52,9 @@ namespace Ceplan.Backend.Siga.Domain.Entity
         public string? S_USUARIO { get; set; }
 
 
+        public string? numdoc { get; set; }
+
+
 
         //respuesta
         public byte[] Pdf { get; set; }

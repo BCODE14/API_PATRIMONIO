@@ -35,16 +35,14 @@ namespace Ceplan.Backend.Siga.Infraestructure.Repository
                 parameters.Add("@MotivoSalida", input.motivosalida);
                 parameters.Add("@TipoDespla", input.tipodespla);
                 parameters.Add("@Trabajador", input.trabajador);
-
-
-
+                parameters.Add("@pdf", input.pdf);
 
                 // queryasync devuelve IEnumerable<T>
                 var result = await connection.QueryAsync<DesplaTempEntity>("Patrimonio.usp_consul_lista", param: parameters, commandType: System.Data.CommandType.StoredProcedure);
 
                 return result.AsList(); //lo convierte a List<T> 
 
-                
+
 
 
             }

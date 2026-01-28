@@ -21,6 +21,7 @@ namespace Ceplan.Backend.Siga.Domain.Entity
         public string? motivosalida { get; set; }
         public string? tipodespla { get; set; }
         public string? trabajador { get; set; } //por aqui se envia la solicitud
+        public byte[]? pdf { get; set; }
 
         //respuesta
 

@@ -11,7 +11,7 @@ namespace Ceplan.Backend.Siga.Application.Query
         //datos de entrada
         public int op { get; set; }
 
-        public string? estado{ get; set; }
+        public string? estado { get; set; }
         public string? uo { get; set; }
         public string? tipo { get; set; }
         public string? fecha { get; set; }
@@ -20,6 +20,7 @@ namespace Ceplan.Backend.Siga.Application.Query
         public string? motivosalida { get; set; }
         public string? tipodespla { get; set; }
         public string? trabajador { get; set; }
+        public byte[]? pdf { get; set; }
 
 
 

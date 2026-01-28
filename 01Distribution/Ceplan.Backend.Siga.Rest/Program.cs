@@ -58,6 +58,7 @@ builder.Services.AddScoped<IAsignacionConsultaRepository, AsignacionConsultaRepo
 builder.Services.AddScoped<IAsignacionBienRepository, AsignacionBienRepository>();
 builder.Services.AddScoped<IDesplaRepository, DesplaRepository>();
 builder.Services.AddScoped<IRrhhRepository, RrhhRepository>();
+builder.Services.AddScoped<IFormatosRepository, FormatosRepository>();
 #endregion
 
 #region Domain IOC
